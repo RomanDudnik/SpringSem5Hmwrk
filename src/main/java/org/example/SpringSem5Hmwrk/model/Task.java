@@ -2,7 +2,6 @@ package org.example.SpringSem5Hmwrk.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -22,18 +21,19 @@ public class Task {
     /**
      * Поле описания, которое не может быть пустым
      */
-    @NotNull
+    @Column(nullable = false)
     private String description;
     /**
      * Поле статуса, которое имеет одно из значений перечисления TaskStatus
      */
+    @Column
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
     /**
      * Поле даты создания, которое автоматически устанавливается при создании задачи
      */
+    @Column
     @CreationTimestamp
     private LocalDateTime createdAt;
-
 
 }
