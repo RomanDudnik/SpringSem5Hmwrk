@@ -67,7 +67,9 @@ public class TaskController {
     @PutMapping("/{id}")
     public Task updateTaskStatus(@PathVariable Long id, @RequestBody Task task) {
         // Находим задачу по ID в базе данных
-        Task existingTask = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
+        Task existingTask = taskRepository.findById(id)
+                // Если задача не найдена, выбрасываем исключение
+                .orElseThrow(() -> new ResourceNotFoundException("Task not found with id: " + id));
         // Устанавливаем новый статус задачи из тела запроса
         existingTask.setStatus(task.getStatus());
         // Сохраняем измененную задачу в базе данных и возвращаем ее

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Entity
+@Table(name = "tasks")
 public class Task {
     /**
      * Поле ID, которое является автоинкрементным и первичным ключом
